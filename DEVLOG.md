@@ -28,3 +28,18 @@ An honest record of how Proacho is built. After each finished step: what was bui
   chokes on characters like `(`. Files must be staged with `git add` first.
 - A commit is only local until there is a remote on GitHub and I `git push`. A remote URL is either SSH
   (`git@github.com:user/repo.git`) or HTTPS, never a mix of both, and `git remote set-url` fixes a wrong one.
+
+### 2026-11-24: CI skeleton
+
+**Built**
+- GitHub Actions workflow (`.github/workflows/ci.yml`): `cargo fmt --check`, `cargo clippy -D warnings`
+  and `cargo test` on Ubuntu and Windows for every push to `main` and every pull request.
+
+**Who wrote what**
+- Claude: the workflow file and the explanation of each part.
+- Me: pushed it and checked the result. CI was green on both systems on the first run.
+
+**What I learned** *(draft, edit to match what you actually remember)*
+- CI runs the same checks I run locally, but on a clean machine. A matrix runs the job once per OS.
+- It is the first check of the Windows build, since I develop on Linux.
+- `-D warnings` turns clippy warnings into errors, so the code stays clean from the start.
