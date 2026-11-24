@@ -25,7 +25,7 @@ Mostly measures **Description**, partly **Delegation**. Each check gives points 
 - **Delegation clarity** – what the AI should do vs. what I'll do / decide myself
 - **Red flags** – very short ("fix it"), vague words only, multiple unrelated tasks in one prompt
 
-Score 0–10. Speech bubble shows score + the 1–2 most valuable missing items.
+Speech bubble shows the score in % + the 1–2 most valuable missing items.
 
 ### Level 2 – Whole chat (Claude via MCP)
 | D | Evidence in the chat |
@@ -38,6 +38,10 @@ Score 0–10. Speech bubble shows score + the 1–2 most valuable missing items.
 Anti-leniency rules for the review prompt: reasoning before numbers, **every score needs a quote from the
 chat as evidence**, anchored examples for what 2 / 5 / 9 mean, return strict JSON.
 
+### Scoring scale
+Each of the 4 Ds is scored **0–10** internally. The total is 0–40 and is always **displayed as a percentage**
+(`total / 40`). A chat review fills all four Ds; for a single prompt see the open question below.
+
 ### Skill level
 Weighted rolling average of recent chat reviews (higher weight) and single prompts.
 Tiers: `0–39 We'll get there` · `40–59 OK prompter` · `60–79 Good prompter` · `80–100 Amazing prompter`.
@@ -48,3 +52,6 @@ I score 15–20 of my own real prompts/chats by hand and compare with Proacho. A
 ## Open checks
 - Verify that Claude Desktop on my Ubuntu setup supports local MCP servers (Phase 4 depends on it).
 - ~~Check if the name is free~~ Done 2026-11-24: `proacho` is free on crates.io. `proacho` is also free on GitHub (user/org name).
+- ~~Open question~~ Decided (Phase 1, step 1): a single prompt is scored **only on the Ds it can show**
+  (Description, Delegation) and the percentage is computed from those two (`(D+D)/20`). A chat review
+  scores all four (`total/40`). The UI must say which kind of score it shows.
